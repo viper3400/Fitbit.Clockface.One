@@ -5,7 +5,7 @@
   "fitbit": {
     "appUUID": "e49fec27-76e0-4099-a5d3-d7adddb13c08",
     "appType": "clockface",
-    "appDisplayName": "Jaxx Face Two",
+    "appDisplayName": "Jaxx One",
     "iconFile": "resources/icon.png",
     "wipeColor": "",
     "requestedPermissions": [
@@ -13,12 +13,12 @@
       "access_heart_rate"
     ],
     "buildTargets": [
-      "atlas",
-      "vulcan"
+      "vulcan",
+      "atlas"
     ],
     "i18n": {
       "en-US": {
-        "name": "Jaxx Face Two"
+        "name": "Jaxx One"
       }
     },
     "defaultLanguage": "en-US"

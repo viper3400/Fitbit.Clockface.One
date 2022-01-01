@@ -1,5 +1,6 @@
 import { me as appbit } from "appbit";
 import { goals } from "user-activity";
+import { Statistics } from "./Statistics";
 
 export function getGoalStatistics() {
   let steps = getStepGoal();
@@ -7,6 +8,9 @@ export function getGoalStatistics() {
   let elevationGain = getElevationGoal();
   let activeZoneMinutes = getActiveZoneMinutesGoal();
   let heartRate = 0;
+  
+  const stats = new Statistics(steps, calories, elevationGain, activeZoneMinutes, heartRate);
+  return stats;
 }
 export function getStepGoal() {
   if (checkPermission() && goals.steps !== undefined) {
@@ -31,7 +35,7 @@ export function getElevationGoal() {
 
 export function getActiveZoneMinutesGoal() {
     if (checkPermission() && goals.activeZoneMinutes  !== undefined) {
-   return goals.activeZoneMinutes;
+   return goals.activeZoneMinutes.total;
   }
   else return 0;
 }

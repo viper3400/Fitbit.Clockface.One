@@ -41,22 +41,5 @@
     <text id="seconds" />
     <text id="date" />
   </svg>
+  <rect id="toggleArea" x="0" y="0" width="100%" height="100%" opacity="0" pointer-events="visible" />
 </svg>
-
-<!--svg class="background">
-  <section class="left-section">
-    <rect class="full red" />    
-    <text id="steps" />
-  </section>
-  <section class="middle-section">
-     <rect class="full gray" />
-  </section>
-  <section class="right-section">
-    <rect class="full green" />
-    <text id="dayOfWeek" />
-    <text id="hours" />
-    <text id="minutes" />
-    <text id="seconds" />
-    <text id="date" />
-  </section>
-</svg-->

@@ -10,6 +10,8 @@ import { HeartRateSensor } from "heart-rate";
 import { display } from "display";
 import { Statistics } from "../common/Statistics";
 
+let showGoals = false;
+
 // Update the clock every minute
 clock.granularity = "seconds";
 
@@ -19,6 +21,13 @@ const minutesLabel = document.getElementById("minutes");
 const secondsLabel = document.getElementById("seconds");
 const dayOfWeekLabel = document.getElementById("dayOfWeek");
 const dateLabel = document.getElementById("date");
+
+const background = document.getElementById("toggleArea");
+background.addEventListener("click", () => {
+  console.log("click");
+  showGoals = !showGoals;
+});
+
 
 // Update the <text> element every tick with the current time
 clock.ontick = (evt) => {
@@ -43,7 +52,13 @@ clock.ontick = (evt) => {
   dayOfWeekLabel.text = `${dayOfWeek}`;
   dateLabel.text = `${day}.${monthName}`;
   
-  const stats = getCurrentStatistics();
+  let stats;
+  if (showGoals) {
+    stats = goals.getGoalStatistics();
+  }
+  else {
+     stats = getCurrentStatistics();
+  }
   
   setSteps(stats);
   setCalories(stats);
