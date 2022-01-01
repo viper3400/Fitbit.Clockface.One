@@ -1,0 +1,26 @@
+{
+  "devDependencies": {
+    "@fitbit/sdk": "~6.0.0"
+  },
+  "fitbit": {
+    "appUUID": "e49fec27-76e0-4099-a5d3-d7adddb13c08",
+    "appType": "clockface",
+    "appDisplayName": "Jaxx Face Two",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "",
+    "requestedPermissions": [
+      "access_activity",
+      "access_heart_rate"
+    ],
+    "buildTargets": [
+      "atlas",
+      "vulcan"
+    ],
+    "i18n": {
+      "en-US": {
+        "name": "Jaxx Face Two"
+      }
+    },
+    "defaultLanguage": "en-US"
+  }
+}
