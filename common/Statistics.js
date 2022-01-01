@@ -1,10 +1,9 @@
 export class Statistics {
-  constructor(steps, calories, elevationGain, activeZoneMinutes, heartRate) {
+  constructor(steps, calories, elevationGain, activeZoneMinutes) {
     this.steps = steps;
     this.calories = calories;
     this.elevationGain = elevationGain;
     this.activeZoneMinutes = activeZoneMinutes;
-    this.heartRate = heartRate;
   }
   
   getSteps() {
@@ -21,9 +20,5 @@ export class Statistics {
   
   getActiveZoneMinutes() {
     return this.activeZoneMinutes;
-  }
-  
-  getHeartRate() {
-    return this.heartRate;
   }
 }

@@ -24,7 +24,6 @@ const dateLabel = document.getElementById("date");
 
 const background = document.getElementById("toggleArea");
 background.addEventListener("click", () => {
-  console.log("click");
   showGoals = !showGoals;
 });
 
@@ -63,8 +62,10 @@ clock.ontick = (evt) => {
   setSteps(stats);
   setCalories(stats);
   setFloors(stats);
-  setMinutes(stats);
+  setMinutes(stats);  
   getHeartRate();
+  
+  setDescriptorLabels();
     
 }
 
@@ -73,7 +74,6 @@ function getCurrentStatistics() {
   let calories = 0;
   let elevationGain = 0;
   let activeZoneMinutes = 0;
-  let heartRate = getHeartRate();
   if (appbit.permissions.granted("access_activity")) {
     steps = today.adjusted.steps;
     calories = today.adjusted.calories;
@@ -81,7 +81,7 @@ function getCurrentStatistics() {
     activeZoneMinutes = today.adjusted.activeZoneMinutes.total;   
   }
   
-  const stats = new Statistics(steps, calories, elevationGain, activeZoneMinutes, heartRate);
+  const stats = new Statistics(steps, calories, elevationGain, activeZoneMinutes);
   return stats;
 }
 
@@ -112,7 +112,7 @@ function setHeartRate(hr) {
 
 function getHeartRate() {
   let hr = 0;
-  if (HeartRateSensor && appbit.permissions.granted("access_heart_rate")) {
+  if (HeartRateSensor && appbit.permissions.granted("access_heart_rate") && !showGoals) {
     const hrm = new HeartRateSensor();
     hrm.start();
     hrm.addEventListener("reading", () => {
@@ -120,7 +120,30 @@ function getHeartRate() {
       setHeartRate(hr);
       hrm.stop();
     });
-  };
+  } else if (showGoals) {
+    setHeartRate(goals.getRestingHeartRate());
+  }
+}
+
+function setDescriptorLabels() {
+  const stepsDescriptorLabel = document.getElementById("steps-descriptor");
+  const calsDescriptorLabel = document.getElementById("cals-descriptor");
+  const floorsDescriptorLabel = document.getElementById("floors-descriptor");
+  const azmDescriptorLabel = document.getElementById("actmins-descriptor");
+  const heartRateDescriptorLabel = document.getElementById("heartrate-descriptor");
+  if (!showGoals) {
+    heartRateDescriptorLabel.text = "hr";
+    stepsDescriptorLabel.text = "steps";
+    calsDescriptorLabel.text = "calories";
+    floorsDescriptorLabel.text = "floors";
+    azmDescriptorLabel.text = "minutes"
+  } else {
+    heartRateDescriptorLabel.text = "rest hr";
+    stepsDescriptorLabel.text = "steps goal";
+    calsDescriptorLabel.text = "cals goal";
+    floorsDescriptorLabel.text = "floors goal";
+    azmDescriptorLabel.text = "mins goal"
+  }
 }
 
 

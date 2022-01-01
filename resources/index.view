@@ -2,32 +2,32 @@
   <svg class="left-section"> 
     <svg x="0%" y="0%" height="18%">
         <text class="list-item" id="steps">
-          <text class="list-descriptor">steps</text>
+          <text class="list-descriptor" id="steps-descriptor">steps</text>
       </text>
     </svg>
     <svg x="0%" y="19%" height="18%" >
       <line x1="0%" y1="10%" x2="90%" y2="10%" stroke-width="2" class="gray" />
       <!--line x1="51%" y1="10%" x2="90%" y2="10%" stroke-width="4" class="orange" /-->
       <text class="list-item" id="cals">
-        <text class="list-descriptor">calories</text>
+        <text class="list-descriptor" id="cals-descriptor">calories</text>
       </text>
     </svg>
      <svg x="0%" y="39%" height="18%" >
       <line x1="0%" y1="10%" x2="90%" y2="10%" stroke-width="2" class="gray" />
       <text class="list-item" id="floors">
-       <text class="list-descriptor">floors</text>
+       <text class="list-descriptor" id="floors-descriptor">floors</text>
        </text>
     </svg>
     <svg x="0%" y="59%" height="18%" >
       <line x1="0%" y1="10%" x2="90%" y2="10%" stroke-width="2" class="gray" />
       <text class="list-item" id="actmins">
-        <text class="list-descriptor">minutes</text>
+        <text class="list-descriptor" id="actmins-descriptor">minutes</text>
       </text>
     </svg>
      <svg x="0%" y="79%" height="18%" >
       <line x1="0%" y1="10%" x2="90%" y2="10%" stroke-width="2" class="gray" />
       <text class="list-item" id="heartrate">
-        <text class="list-descriptor">bpm</text>
+        <text class="list-descriptor" id="heartrate-descriptor">bpm</text>
        </text>
     </svg>
   </svg>

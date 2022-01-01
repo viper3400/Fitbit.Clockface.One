@@ -1,5 +1,5 @@
 import { me as appbit } from "appbit";
-import { goals } from "user-activity";
+import { goals, dayHistory } from "user-activity";
 import { Statistics } from "./Statistics";
 
 export function getGoalStatistics() {
@@ -7,38 +7,45 @@ export function getGoalStatistics() {
   let calories = getCaloriesGoal();
   let elevationGain = getElevationGoal();
   let activeZoneMinutes = getActiveZoneMinutesGoal();
-  let heartRate = 0;
   
-  const stats = new Statistics(steps, calories, elevationGain, activeZoneMinutes, heartRate);
+  const stats = new Statistics(steps, calories, elevationGain, activeZoneMinutes);
   return stats;
 }
-export function getStepGoal() {
+function getStepGoal() {
   if (checkPermission() && goals.steps !== undefined) {
    return goals.steps;
   }
   else return 0;
 }
 
-export function getCaloriesGoal() {
+function getCaloriesGoal() {
     if (checkPermission() && goals.calories  !== undefined) {
    return goals.calories;
   }
   else return 0;
 }
 
-export function getElevationGoal() {
+function getElevationGoal() {
     if (checkPermission() && goals.elevationGain  !== undefined) {
    return goals.elevationGain;
   }
   else return 0;
 }
 
-export function getActiveZoneMinutesGoal() {
+function getActiveZoneMinutesGoal() {
     if (checkPermission() && goals.activeZoneMinutes  !== undefined) {
    return goals.activeZoneMinutes.total;
   }
   else return 0;
 }
+
+export function getRestingHeartRate() {
+  if (checkPermission()) {
+    return dayHistory.query()[0].restingHeartRate;
+  } else return 0;
+}
+
+
 
 function checkPermission() {
   return appbit.permissions.granted("access_activity");
