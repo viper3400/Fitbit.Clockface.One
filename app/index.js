@@ -3,10 +3,12 @@ import * as document from "document";
 import { preferences } from "user-settings";
 import * as util from "../common/utils";
 import * as helper from "../common/dateTimeHelper";
+import * as goals from "../common/goalsHelper";
 import { me as appbit } from "appbit";
 import { today, ActiveZoneMinutes} from "user-activity";
 import { HeartRateSensor } from "heart-rate";
 import { display } from "display";
+import { Statistics } from "../common/Statistics";
 
 // Update the clock every minute
 clock.granularity = "seconds";
@@ -20,7 +22,6 @@ const dateLabel = document.getElementById("date");
 
 // Update the <text> element every tick with the current time
 clock.ontick = (evt) => {
-  console.log('tick');
   let currentDate = evt.date;
   let hours = currentDate.getHours();  
   if (preferences.clockDisplay === "12h") {
@@ -42,62 +43,69 @@ clock.ontick = (evt) => {
   dayOfWeekLabel.text = `${dayOfWeek}`;
   dateLabel.text = `${day}.${monthName}`;
   
-  setSteps(today);
-  setCalories(today);
-  setFloors(today);
-  setMinutes(today);
-  setHeartrate();
+  const stats = getCurrentStatistics();
+  
+  setSteps(stats);
+  setCalories(stats);
+  setFloors(stats);
+  setMinutes(stats);
+  getHeartRate();
+    
 }
 
-
-function setSteps(today) {
-  const stepsLabel = document.getElementById("steps");
+function getCurrentStatistics() {
   let steps = 0;
+  let calories = 0;
+  let elevationGain = 0;
+  let activeZoneMinutes = 0;
+  let heartRate = getHeartRate();
   if (appbit.permissions.granted("access_activity")) {
-     steps = today.adjusted.steps;
+    steps = today.adjusted.steps;
+    calories = today.adjusted.calories;
+    elevationGain = today.adjusted.elevationGain;
+    activeZoneMinutes = today.adjusted.activeZoneMinutes.total;   
   }
-  stepsLabel.text = `${steps}`;
+  
+  const stats = new Statistics(steps, calories, elevationGain, activeZoneMinutes, heartRate);
+  return stats;
 }
 
-function setCalories(today) {
+function setSteps(stats) {
+  const stepsLabel = document.getElementById("steps");
+  stepsLabel.text = `${stats.getSteps()}`;
+}
+
+function setCalories(stats) {
   const calsLabel = document.getElementById("cals");
-  let cals = 0;
-  if (appbit.permissions.granted("access_activity")) {
-      cals = today.adjusted.calories;
-    }
-  calsLabel.text = `${cals}`;
+  calsLabel.text = `${stats.getCalories()}`;
 }
 
-function setFloors(today) {
+function setFloors(stats) {
   const floorsLabel = document.getElementById("floors");
-  let floors = 0;
-  if (appbit.permissions.granted("access_activity")) {
-      floors = today.adjusted.elevationGain;
-    }
-  floorsLabel.text = `${floors}`;
+  floorsLabel.text = `${stats.getElevationGain()}`;
 }
 
-function setMinutes(today) {
+function setMinutes(stats) {
   const minutesLabel = document.getElementById("actmins");
-  let mins = 0;
-  if (appbit.permissions.granted("access_activity")) {
-      mins = today.adjusted.activeZoneMinutes.total;
-    }
-  minutesLabel.text = `${mins}`;
+  minutesLabel.text = `${stats.getActiveZoneMinutes()}`;
 }
 
-function setHeartrate() {
+function setHeartRate(hr) {
   const heartRateLabel = document.getElementById("heartrate");
+  heartRateLabel.text = `${hr}`;  
+}
+
+function getHeartRate() {
   let hr = 0;
   if (HeartRateSensor && appbit.permissions.granted("access_heart_rate")) {
     const hrm = new HeartRateSensor();
     hrm.start();
     hrm.addEventListener("reading", () => {
-      hr =hrm.heartRate;
-      heartRateLabel.text = `${hr}`;
+      hr = hrm.heartRate;
+      setHeartRate(hr);
       hrm.stop();
     });
-  }
+  };
 }
 
 
