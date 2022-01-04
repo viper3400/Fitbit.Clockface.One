@@ -77,9 +77,9 @@
 #hours {
   font-size: 120;
   font-family: System-Light;
-  text-anchor: start;
+  text-anchor: middle;
   text-length: 2;
-  x: 5%;
+  x: 20%;
   y: 20%+80;
   fill: white;
 }
@@ -87,9 +87,9 @@
 #minutes {
   font-size: 120;
   font-family: System-Light;
-  text-anchor: start;
+  text-anchor: middle;
   text-length: 2;
-  x: 5%;
+  x: 20%;
   y: 73%;
   fill: orange;
 }

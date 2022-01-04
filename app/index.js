@@ -37,9 +37,9 @@ clock.ontick = (evt) => {
     hours = hours % 12 || 12;
   } else {
     // 24h format
-    hours = util.zeroPad(hours);
+    hours = util.monoDigits(util.zeroPad(hours));
   }
-  let mins = util.zeroPad(currentDate.getMinutes());
+  let mins = util.monoDigits(util.zeroPad(currentDate.getMinutes()));
   let secs = util.zeroPad(currentDate.getSeconds());
   let dayOfWeek = helper.getDayofWeek(currentDate);
   let monthName = helper.getMonth(currentDate);
