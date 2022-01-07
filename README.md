@@ -17,7 +17,8 @@ It displays todays
 * current heart rate
 at the left side 
 
-Not implemented yet:
-* Gray bars under each value fill with color from 0 to 100% of the daily goal 
 * On tap, todays values are replaced with the daily goals for the values 
 * Heart rate will show the daily rest heart rate 
+
+Not implemented yet:
+* Gray bars under each value fill with color from 0 to 100% of the daily goal 
