@@ -5,22 +5,22 @@ export function getDayofWeek(today) {
     case 0:
       dayOfWeek = "SONNTAG";
       break;
-    case 1: 
+    case 1:
       dayOfWeek = "MONTAG";
       break;
-    case 2: 
+    case 2:
       dayOfWeek = "DIENSTAG";
       break;
-    case 3: 
+    case 3:
       dayOfWeek = "MITTWOCH";
       break;
-    case 4: 
+    case 4:
       dayOfWeek = "DONNERSTAG";
       break;
-    case 5: 
+    case 5:
       dayOfWeek = "FREITAG";
       break;
-    case 9: 
+    case 6:
       dayOfWeek = "SAMSTAG";
       break;
   }
@@ -28,7 +28,7 @@ export function getDayofWeek(today) {
 }
 
 export function getMonth(today) {
-  let month = today.getMonth();  
+  let month = today.getMonth();
   let monthName = "SEPTEMBER";
   switch (month) {
     case 0:
@@ -39,16 +39,16 @@ export function getMonth(today) {
       break;
     case 2:
       monthName = "MÄRZ";
-      break;      
+      break;
     case 3:
       monthName = "APRIL";
-      break;      
+      break;
     case 4:
       monthName = "MAI";
       break;
     case 5:
       monthName = "JUNI";
-      break;      
+      break;
     case 6:
       monthName = "JULI";
       break;
@@ -57,7 +57,7 @@ export function getMonth(today) {
       break;
     case 8:
       monthName = "SEPTEMBER";
-      break;      
+      break;
     case 9:
       monthName = "OKTOBER";
       break;
@@ -66,7 +66,7 @@ export function getMonth(today) {
       break;
     case 11:
       monthName = "DEZEMBER";
-      break;      
-  }  
+      break;
+  }
   return monthName;
 }
