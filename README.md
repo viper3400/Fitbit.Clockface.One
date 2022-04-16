@@ -2,7 +2,7 @@
 
 _The code in this repository is developed with [Fitbit Studio](https://dev.fitbit.com/getting-started/)._
 
-This clockface is inspired by Clear Beam, a clockface which is marked as discontinued by developer in 2019 and is not available for latest Fitibit watches.
+This clockface is inspired by [Clear Beam](https://github.com/viper3400/ClearBeam), a clockface which is marked as discontinued by developer in 2019 and is not available for latest Fitibit watches.
 
 It displays the 
 * weekday,
