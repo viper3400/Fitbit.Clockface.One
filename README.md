@@ -18,7 +18,9 @@ It displays todays
 at the left side 
 
 * On tap, todays values are replaced with the daily goals for the values 
-* Heart rate will show the daily rest heart rate 
+* Heart rate will show the daily rest heart rate
+* Goals will disapear after 6 seconds without tap
 
 Not implemented yet:
-* Gray bars under each value fill with color from 0 to 100% of the daily goal 
+* Gray bars under each value fill with color from 0 to 100% of the daily goal
+* Display of battery load, warning on low battery

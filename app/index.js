@@ -21,15 +21,29 @@ const minutesLabel = document.getElementById("minutes");
 const secondsLabel = document.getElementById("seconds");
 const dayOfWeekLabel = document.getElementById("dayOfWeek");
 const dateLabel = document.getElementById("date");
-
 const background = document.getElementById("toggleArea");
+
+// Countdown timer for goal stats display
+let goalsDisplayCountdown = -1;
+
+
 background.addEventListener("click", () => {
-  showGoals = !showGoals;
+  goalsDisplayCountdown = 6;
+  if (!showGoals) showGoals = true;
 });
 
 
 // Update the <text> element every tick with the current time
 clock.ontick = (evt) => {
+  let priv = goalsDisplayCountdown;
+  if (priv > 0) {
+    priv--;
+    goalsDisplayCountdown--;
+    if (priv == 0) {
+      showGoals = false;
+    }
+  }
+  
   let currentDate = evt.date;
   let hours = currentDate.getHours();  
   if (preferences.clockDisplay === "12h") {
