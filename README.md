@@ -2,7 +2,7 @@
 
 _The code in this repository is developed with [Fitbit Studio](https://dev.fitbit.com/getting-started/)._
 
-This clockface is inspired by [Clear Beam](https://github.com/viper3400/ClearBeam), a clockface which is marked as discontinued by developer in 2019 and is not available for latest Fitibit watches. Though, it has not (and never will have) all the customization possibilites of its role model.
+This clockface is inspired by [Clear Beam](https://github.com/viper3400/ClearBeam), a clockface which is marked as discontinued by developer in 2019 and is not available for latest Fitibit watches. Though, JaxxOne has not (and never will have) all the customization possibilites of its role model.
 
 It displays the 
 - weekday,
@@ -26,3 +26,7 @@ Not implemented yet:
 - Display of battery load, warning on low battery
 
 If you encounter any issues, you may report it here: https://github.com/viper3400/Fitbit.Clockface.One/issues
+
+This clockface needs permission for activity (to get the daily goals) and heart rate tracking.
+
+You may use this clockface for free as it is. Please respect, that this is a private project and that this clockface hast just to fullfill my personal needs.
