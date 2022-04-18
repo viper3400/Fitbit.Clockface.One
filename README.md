@@ -24,6 +24,5 @@ at the left side
 Not implemented yet:
 - Gray bars under each value fill with color from 0 to 100% of the daily goal
 - Display of battery load, warning on low battery
-- Other day & month names than in German
 
 If you encounter any issues, you may report it here: https://github.com/viper3400/Fitbit.Clockface.One/issues

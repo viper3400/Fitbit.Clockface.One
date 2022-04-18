@@ -2,10 +2,10 @@ import clock from "clock";
 import * as document from "document";
 import { preferences } from "user-settings";
 import * as util from "../common/utils";
-import * as helper from "../common/dateTimeHelper";
 import * as goals from "../common/goalsHelper";
 import { me as appbit } from "appbit";
 import { today, ActiveZoneMinutes} from "user-activity";
+import { locale } from "user-settings";
 import { HeartRateSensor } from "heart-rate";
 import { display } from "display";
 import { Statistics } from "../common/Statistics";
@@ -35,6 +35,7 @@ background.addEventListener("click", () => {
 
 // Update the <text> element every tick with the current time
 clock.ontick = (evt) => {
+  
   let priv = goalsDisplayCountdown;
   if (priv > 0) {
     priv--;
@@ -55,8 +56,15 @@ clock.ontick = (evt) => {
   }
   let mins = util.monoDigits(util.zeroPad(currentDate.getMinutes()));
   let secs = util.monoDigits(util.zeroPad(currentDate.getSeconds()));
-  let dayOfWeek = helper.getDayofWeek(currentDate);
-  let monthName = helper.getMonth(currentDate);
+  
+  let lang = locale.language;
+  let prefix = lang.substring(0,2);
+  if ( (typeof util.monthName[prefix] === 'undefined') || (typeof util.weekday[prefix] === 'undefined') ) {
+    prefix = 'en';
+  }
+ 
+  let dayOfWeek = `${util.weekday[prefix][currentDate.getDay()].toUpperCase()}`
+  let monthName =`${util.monthName[prefix][currentDate.getMonth()].toUpperCase()}`
   let day = util.zeroPad(currentDate.getDate());
 
   hoursLabel.text = `${hours}`;
@@ -79,8 +87,7 @@ clock.ontick = (evt) => {
   setMinutes(stats);  
   getHeartRate();
   
-  setDescriptorLabels();
-    
+  setDescriptorLabels();   
 }
 
 function getCurrentStatistics() {
